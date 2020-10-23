@@ -1,0 +1,44 @@
+#left-part{
+    width: 25%;
+    float: left;
+    height: 100%;
+    background: rgb(51, 51, 51);
+}
+
+/* 标题HuaisuiBlog样式 */
+#masthead {
+    font-family: Amatic SC;
+    line-height: 50px;
+    font-size: 40px;
+    text-align: center;
+    padding: 30px 0;
+    background: rgb(51, 51, 51);
+    color: #000;
+}
+
+/* 导航栏容器 */
+#nav-container{
+    border-bottom: 1px solid rgba(119, 119, 119, 0.8);
+    border-top: 1px solid rgba(119, 119, 119, 0.8);
+    background: rgb(51, 51, 51);
+}
+
+/* 导航栏 */
+#site-navigation {
+    background: rgb(51, 51, 51);
+}
+
+.nav-outside{
+    border-bottom: 1px solid rgba(119, 119, 119, 0.8);
+}
+
+/* 每个nav的布局 */
+.nav-layout {
+    margin: 5px;
+    text-align: center;
+}
+
+/* nav本体 */
+.nav-item {
+    display: inline-block;
+}

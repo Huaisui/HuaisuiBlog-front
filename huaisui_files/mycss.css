@@ -1,0 +1,42 @@
+html,body{
+    height: 100%;
+    margin: 0;
+}
+
+
+/* 链接样式 */
+a {
+    color:white;
+    text-decoration:none;
+}
+
+
+/* 外层 */
+#layout-outer-side-decoration {
+    height: 100%;
+    background-color: rgb(233, 239, 245);
+}
+
+body .custom-background {
+    background-image: url(http://47.92.208.226/wp-content/uploads/2019/10/background.jpg);
+    background-position: left top;
+    background-size: auto;
+    background-repeat: repeat;
+    background-attachment: scroll;
+}
+
+/* 真 内部容器 */
+#page {
+    max-width: 80%;
+    margin: 0 auto;
+    height: 100%;
+    position: relative;
+    background: rgb(255, 255, 255);
+}
+
+/* 内层 */
+#layout-inner-side-decoration {
+    margin: 0px auto; 
+    height: 100%;
+    background-color : rgb(255, 255, 255)
+}
