@@ -11,6 +11,13 @@
 Access-Control-Allow-Origin: *
 ```
 
+```java
+//在springboot中：
+HttpHeaders header = new HttpHeaders();
+header.set("Access-Control-Allow-Origin","*");
+ResponseEntity<XXX> entity = ResponseEntity.ok().headers(header).body(xxx);
+```
+
 ## SpringBoot中找不到resources下的配置文件
 
 解决方式：pom.xml中添加如下配置
