@@ -11,10 +11,6 @@
 
 .article-container{
     border-bottom: 1px solid #eee;
-}
-
-.article-item{
-    /* margin: 40px; */
     padding: 30px;
 }
 
@@ -52,12 +48,20 @@
     padding: 15px;
 }
 
+
 .page-nav-item{
     padding: 5px;
-    font-size: 15px;
+    font-size: 25px;
     line-height:  1.5;
     border-radius: 2px;
-    margin: 10px;
     text-align: center;
+    margin: 10px;
     background-color: #3d566e;
+}
+
+#site-info{
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    background: #eee;
 }

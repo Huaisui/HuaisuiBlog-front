@@ -30,22 +30,41 @@ function get_article(url){
 // 获得第n页
 function get_page(url,page){
     url = url+"?page="+page;
-    console.log(url);
     ajax(url,"GET").then((value)=>{
         var obj = JSON.parse(value);
-        console.log(obj);
+        // console.log(obj[0]);
+        // console.log(obj[0].article_id);
+        var len = obj.length;
+        var myNodes = new Array();
+        console.log(len);
+        for(var i=0; i<len; i++){  //复制n个article-container
+            myNodes[i] = $("div.article-container").clone();
+        }
+        for(var i=0; i<len; i++){  //append n个article-container到articles-container
+            myNodes[i].appendTo("div.articles-container");
+        }
+        var containers = document.getElementsByClassName("article-container");
+        for(var i=0; i<len; i++){  //往每个article-container里面填数据
+            containers[i].id = "ac-"+i;
+            var x = $("div#ac-"+i).find("span");
+            x[0].innerHTML = obj[i].article_title;
+            x[0].setAttribute("id","url"+obj[i].article_id);
+            x[1].innerHTML = obj[i].post_date;
+            x[2].setAttribute("id","url"+obj[i].article_id);
+            console.log(x);
+        }
+        $("#ac_-1").remove();
     }).catch((value)=>{
         console.log(value);
     });
 }
 
-// get_article("https://localhost:8080/getitem");
-// get_page("http://localhost:8080",1);
-
-function create_article_item(){
-    var right = document.getElementById("right-part")
-    var n = right.getElementsByClassName("articles-container");            
-    console.log(n);
+function flip_page(){
+    var page = window.location.href;
+    console.log(page);
 }
 
-create_article_item();
+
+get_page("http://localhost:8080/getArticlesInfo",1); 
+flip_page();
+
