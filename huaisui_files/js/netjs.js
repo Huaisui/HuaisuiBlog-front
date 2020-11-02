@@ -36,7 +36,7 @@ function get_page(url,page){
         // console.log(obj[0].article_id);
         var len = obj.length;
         var myNodes = new Array();
-        console.log(len);
+        // console.log(len);
         for(var i=0; i<len; i++){  //复制n个article-container
             myNodes[i] = $("div.article-container").clone();
         }
@@ -51,7 +51,7 @@ function get_page(url,page){
             x[0].setAttribute("id","url"+obj[i].article_id);
             x[1].innerHTML = obj[i].post_date;
             x[2].setAttribute("id","url"+obj[i].article_id);
-            console.log(x);
+            // console.log(x);
         }
         $("#ac_-1").remove();
     }).catch((value)=>{
@@ -59,12 +59,21 @@ function get_page(url,page){
     });
 }
 
-function flip_page(){
-    var page = window.location.href;
-    console.log(page);
+// 请求后台数据的url
+var page_url = "http://localhost:8080/getArticlesInfo";
+
+function to_page(){
+    // var page = window.location.href;
+    var params = window.location.search;
+    var page = '';
+    if(params.substring(0,6)=="?page="){
+        for(var i=6; i<params.length; i++){
+            if(params.charAt(i)<='9' ** params.charAt(i)>='0'){
+                page += params.charAt(i);
+            }
+        }
+    }else{
+        page += '1'
+    }
+    get_page(page_url,page);
 }
-
-
-get_page("http://localhost:8080/getArticlesInfo",1); 
-flip_page();
-

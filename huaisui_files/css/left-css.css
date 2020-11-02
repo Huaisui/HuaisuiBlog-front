@@ -1,5 +1,6 @@
 #left-part{
     width: 25%;
+    /* min-height: inherit; */
     float: left;
     background: rgb(51, 51, 51);    
     position: absolute;
