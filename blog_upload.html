@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>article_page</title>
+        <link href="./huaisui_files/css/mycss.css" type="text/css" rel="stylesheet">
+        <link href="./huaisui_files/css/left-css.css" type="text/css" rel="stylesheet">
+        <link href="./huaisui_files/css/right-css.css" type="text/css" rel="stylesheet">
+        <link href="./huaisui_files/css/post.css" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" href="node_modules/editor.md/css/editormd.css">
+        <!-- <link rel="stylesheet" href="node_modules/editor.md/css/editormd.preview.css"> -->
+    </head>
+    <body>
+        <div id="layout-outer-side-decoration" class="custom-background"> <!--外部容器-->
+            <div id="page" >
+                <div id="layout-inner-side-decoration">
+                    <div id="title-box">
+                        <div id="description-title">
+                            <span>文章标题</span>
+                        </div>
+                        <div id="title-input-box">
+                            <input id="post-article-title-input" type="text">
+                        </div>
+                    </div>
+                    <div id="test-editormd">
+                        <textarea style="display:none;">
+#### Settings
+```javascript
+{
+    imageUpload       : true,
+    imageFormats      : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+    crossDomainUpload : true,
+    uploadCallbackURL : "http://xxxxxx/upload_callback.html?test=dfdf"
+}
+```
+                        </textarea>
+                    </div>
+                    <div class="button-layout">
+                        <button id="post-button" onclick="post_article()">upload</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <script src="huaisui_files/jquery-3.5.1.js"></script> -->
+        <script src="huaisui_files/js/jquery.min.js"></script>
+        <script src="node_modules/editor.md/editormd.js"></script>
+        <script type="text/javascript">
+            var testEditor;
+            $(function() {
+                testEditor = editormd("test-editormd", {
+                    width             : "90%",
+                    height            : 640,
+                    markdown          : "",
+                    path              : 'node_modules/editor.md/lib/',
+                    imageUpload       : true,
+                    imageFormats      : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                    imageUploadURL    : "http://localhost:8080/postfile",
+                    crossDomainUpload : true,
+                    uploadCallbackURL : "http://localhost/editor.md/examples/php/upload_callback.html?test=dfdf"
+                    
+                    /*
+                    跨域时，上传的图片服务器后台只需要返回一个跳转 URL 并跳转到原页面同域下的 callback 页面，结构如下：
+                    {
+                        success   : 0 | 1,   // 0 表示上传失败，1 表示上传成功
+                        message   : "提示的信息，上传成功或上传失败及错误信息等。",
+                        dialog_id : $_GET['dialog_id'],
+                        url       : "远程图片地址"    // 上传成功时才返回
+                    }
+                    */
+                });
+            });
+        </script>
+        <script src="huaisui_files/js/netjs.js"></script>
+    </body>
+</html>

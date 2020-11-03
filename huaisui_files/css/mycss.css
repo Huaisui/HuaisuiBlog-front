@@ -41,7 +41,7 @@ body .custom-background {
 
 /* 内层 */
 #layout-inner-side-decoration {
-    margin: 0px auto; 
+    /* margin: 0px auto;  */
     height: 100%;
     background-color : rgb(255, 255, 255);
 }
