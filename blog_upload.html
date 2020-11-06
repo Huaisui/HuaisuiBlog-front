@@ -37,7 +37,7 @@
                         </textarea>
                     </div>
                     <div class="button-layout">
-                        <button id="post-button" onclick="post_article()">upload</button>
+                        <button id="post-button">upload</button>
                     </div>
                 </div>
             </div>
@@ -56,9 +56,10 @@
                     path              : 'node_modules/editor.md/lib/',
                     imageUpload       : true,
                     imageFormats      : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-                    imageUploadURL    : "http://localhost:8080/postfile",
+                    imageUploadURL    : "http://localhost:8080/postpic",
                     crossDomainUpload : true,
-                    uploadCallbackURL : "http://localhost/editor.md/examples/php/upload_callback.html?test=dfdf"
+                    saveHTMLToTextarea : true,
+                    uploadCallbackURL : "http://localhost:8080/images"
                     
                     /*
                     跨域时，上传的图片服务器后台只需要返回一个跳转 URL 并跳转到原页面同域下的 callback 页面，结构如下：

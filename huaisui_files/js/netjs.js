@@ -78,24 +78,29 @@ function to_page(){
     get_page(page_url,page);
 }
 
-
 // 上传文章
-function post_article(){
-    console.log("post");
-    var title = $("#post-article-title-input").val();
-    var content = testEditor.getMarkdown();
-    console.log(title);
-    console.log(content);
-    $.post(
-        url = 'http://localhost:8080/postfile',
-        data = {
-            username: 'admin',
-            password: '123',
-            article : content,
-        },
-        function(result) {
-            alert(JSON.stringify(result));
-            $('#content').text(JSON.stringify(result));
-        }
-    );
+
+
+function test_function(){
+    console.log("this is test function");
 }
+
+$("#post-button").click(
+    function (){
+        var title = $("#post-article-title-input").val();
+        var content = testEditor.getMarkdown();
+        var data = {
+            "title" : title,
+            "content" : content,
+        };
+        $.ajax({
+            type : 'Post',
+            url : 'http://localhost:8080/postfile',
+            data : data,
+            function(result) {
+                alert(JSON.stringify(result));
+                $('#content').text(JSON.stringify(result));
+            }
+        });
+    }
+);
