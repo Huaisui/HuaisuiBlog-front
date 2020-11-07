@@ -89,18 +89,22 @@ $("#post-button").click(
     function (){
         var title = $("#post-article-title-input").val();
         var content = testEditor.getMarkdown();
-        var data = {
-            "title" : title,
-            "content" : content,
-        };
+        console.log(JSON.stringify({
+            content : content,
+            title : title,
+        }));
         $.ajax({
             type : 'Post',
-            url : 'http://localhost:8080/postfile',
-            data : data,
-            function(result) {
-                alert(JSON.stringify(result));
-                $('#content').text(JSON.stringify(result));
-            }
+            url : 'http://localhost:8080/postjson',
+            contentType : 'application/json',
+            data : JSON.stringify({
+                "content" : content,
+                "title" : title,
+            }),
+            dataType : 'json',
+            success: function(data, textStatus, jqXHR) {
+                alert(data);
+            },
         });
     }
 );
