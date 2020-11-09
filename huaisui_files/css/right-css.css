@@ -70,3 +70,8 @@
 #test-editormd-view{
     width: inherit;
 }
+
+#md-container{
+    margin: 10px; 
+    word-break: break-all;
+}

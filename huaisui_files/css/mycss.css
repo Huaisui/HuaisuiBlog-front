@@ -15,14 +15,12 @@ a {
     text-decoration:none;
 }
 
-
-/* 外层 */
-#layout-outer-side-decoration {
+/* #layout-outer-side-decoration {
     height: 100%;
     background-color: rgb(233, 239, 245);
-}
+} */
 
-body .custom-background {
+body.custom-background {
     background-image: url(http://47.92.208.226/wp-content/uploads/2019/10/background.jpg);
     background-position: left top;
     background-size: auto;

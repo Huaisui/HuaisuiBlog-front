@@ -27,9 +27,10 @@ function get_article(url){
     });
 }
 
-// 获得第n页
+// 获得第n页的文章数据
 function get_page(url,page){
     url = url+"?page="+page;
+    console.log(url);
     ajax(url,"GET").then((value)=>{
         var obj = JSON.parse(value);
         // console.log(obj[0]);
@@ -52,6 +53,9 @@ function get_page(url,page){
             x[1].innerHTML = obj[i].post_date;
             x[2].setAttribute("id","url"+obj[i].article_id);
             // console.log(x);
+            var y = $("div#ac-"+i).find("a");
+            y.attr("href","http://localhost:8080/article?id="+obj[i].article_id);
+            console.log(containers[i]);
         }
         $("#ac_-1").remove();
     }).catch((value)=>{
@@ -59,9 +63,9 @@ function get_page(url,page){
     });
 }
 
-// 请求后台数据的url
+// 请求第n页的接口
 var page_url = "http://localhost:8080/getArticlesInfo";
-
+// 请求第n页
 function to_page(){
     // var page = window.location.href;
     var params = window.location.search;
@@ -78,13 +82,11 @@ function to_page(){
     get_page(page_url,page);
 }
 
-// 上传文章
-
-
 function test_function(){
     console.log("this is test function");
 }
 
+// 上传文章 button
 $("#post-button").click(
     function (){
         var title = $("#post-article-title-input").val();
@@ -95,7 +97,7 @@ $("#post-button").click(
         }));
         $.ajax({
             type : 'Post',
-            url : 'http://localhost:8080/postjson',
+            url : 'http://localhost:8080/postfile',
             contentType : 'application/json',
             data : JSON.stringify({
                 "content" : content,
