@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HuaisuiBlog</title>
+    <link href="./huaisui_files/css/mycss.css" type="text/css" rel="stylesheet">
+    <link href="./huaisui_files/css/left-css.css" type="text/css" rel="stylesheet">
+    <link href="./huaisui_files/css/right-css.css" type="text/css" rel="stylesheet">
+
+</head>
+
+<body class="custom-background">
+    <div id="page" >                                              <!--内部容器-->
+        <div id="layout-inner-side-decoration">
+            <!-- 左边 -->
+            <div id="left-part">
+                <header id="masthead">
+                    <a href="http://localhost:8080/" title="TeoHuaisui">
+                        <span itemprop="description">HuaisuiBlog</span>
+                    </a>
+                </header>
+                <!--navigation容器-->
+                <div id="nav-container"> 
+                    <nav id="site-navigation" role="navigation">
+                        <div class="nav-outside">
+                            <div class="nav-layout">
+                                <div class="nav-item">
+                                    <a href="https://github.com/Huaisui">github</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nav-outside">
+                            <div class="nav-layout">
+                                <div class="nav-item">
+                                    <a href="https://www.instagram.com/huaisui_/">instagram</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nav-outside">
+                            <div class="nav-layout">
+                                <div class="nav-item">
+                                    <a href="">wechat : TeoHuaisui</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nav-outside">
+                            <div class="nav-layout">
+                                <div class="nav-item">
+                                    <a href="">498685034@qq.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- 右边 -->
+            <div id="right-part">
+                <form class="myform" method="POST">
+                    <div class="formdiv">
+                        <span>账号</span>
+                        <input type="text" required="required" name="userid">
+                    </div>
+                    <div class="formdiv">
+                        <span>密码</span>
+                        <input type="password" required="required" name="password">
+                    </div>
+                    <div class="formdiv">
+                        <button type="submit" id="submit-button">
+                            <span>登录</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <script src="huaisui_files/js/jquery-3.5.1.js"></script>
+    <script src="./huaisui_files/js/netjs.js"></script>
+    <script src="/huaisui_files/js/homejs.js"></script>
+
+    <script>
+        $("submit-button").click(function(){
+            $.ajax({
+                type : "POST",
+                url : "http://localhost:8080/loginform",
+                success : function(data){
+                    
+                }
+            })
+        })
+    </script>
+</body>
+</html>

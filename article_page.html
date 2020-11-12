@@ -7,9 +7,11 @@
     <link href="./huaisui_files/css/mycss.css" type="text/css" rel="stylesheet">
     <link href="./huaisui_files/css/left-css.css" type="text/css" rel="stylesheet">
     <link href="./huaisui_files/css/right-css.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="node_modules/editor.md/css/editormd.preview.css" />
+    <link rel="stylesheet" href="node_modules/editor.md/css/editormd.css">
 </head>
 
-<body>
+<body class="custom-background">
     <div id="page" >                                              <!--内部容器-->
         <div id="layout-inner-side-decoration">
             <!-- 左边 -->
@@ -25,14 +27,28 @@
                         <div class="nav-outside">
                             <div class="nav-layout">
                                 <div class="nav-item">
-                                    <a href="https://baidu.com">baidu</a>
+                                    <a href="https://github.com/Huaisui">github</a>
                                 </div>
                             </div>
                         </div>
                         <div class="nav-outside">
                             <div class="nav-layout">
                                 <div class="nav-item">
-                                    <a href="https://bilibili.com">Bilibili</a>
+                                    <a href="https://www.instagram.com/huaisui_/">instagram</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nav-outside">
+                            <div class="nav-layout">
+                                <div class="nav-item">
+                                    <a href="">wechat : TeoHuaisui</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nav-outside">
+                            <div class="nav-layout">
+                                <div class="nav-item">
+                                    <a href="">498685034@qq.com</a>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +61,9 @@
                     <span id="title-span">Title</span>
                 </div>
                 <div id="md-container">
-                    <div id="test-editormd-view"></div>
+                    <div id="test-editormd-view2">
+                        <textarea id="append-test" style="display:none;"></textarea>
+                    </div>
                 </div>
                 <div id="page-nav-container">
                     <nav id="page-nav">
@@ -60,8 +78,18 @@
             </div>
         </div>
     </div>
-
+    
     <script src="huaisui_files/js/jquery.min.js"></script>
+    <script src="node_modules/editor.md/lib/marked.min.js"></script>
+    <script src="node_modules/editor.md/lib/prettify.min.js"></script>
+    
+    <script src="node_modules/editor.md/lib/raphael.min.js"></script>
+    <script src="node_modules/editor.md/lib/underscore.min.js"></script>
+    <script src="node_modules/editor.md/lib/sequence-diagram.min.js"></script>
+    <script src="node_modules/editor.md/lib/flowchart.min.js"></script>
+    <script src="node_modules/editor.md/lib/jquery.flowchart.min.js"></script>
+
+    <script src="node_modules/editor.md/editormd.js"></script>
     <script type="text/javascript">
         var params = window.location.search;
         var id = '';
@@ -74,13 +102,27 @@
         $.ajax({
             url : "http://localhost:8080/getarticle?id="+id,
             success : function(data,stutas){
+                console.log(data);
                 document.getElementById("title-span").innerHTML = data.title;
-                document.getElementById("test-editormd-view").innerHTML = data.content;
+                document.getElementById("append-test").innerHTML = data.content;
+                mdtohtml();
             },
             error : function(data){
                 console.log("error")
             }
         })
+        function mdtohtml() {
+            var testEditormdView, testEditormdView2;
+
+            testEditormdView2 = editormd.markdownToHTML("test-editormd-view2", {
+                htmlDecode      : "style,script,iframe",  // you can filter tags decode
+                emoji           : true,
+                taskList        : true,
+                tex             : true,  // 默认不解析
+                flowChart       : true,  // 默认不解析
+                sequenceDiagram : true,  // 默认不解析
+            });
+        }
     </script>
 </body>
 </html>

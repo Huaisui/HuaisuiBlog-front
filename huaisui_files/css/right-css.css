@@ -75,3 +75,11 @@
     margin: 10px; 
     word-break: break-all;
 }
+
+.myform{
+    text-align: center;
+}
+
+.formdiv{
+    padding: 10px;
+}
