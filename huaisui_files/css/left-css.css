@@ -44,3 +44,28 @@
 .nav-item {
     display: inline-block;
 }
+
+#myInfo-layout {
+    /* border-top: 1px solid rgba(119, 119, 119, 0.8); */
+    border-bottom: 1px solid rgba(119, 119, 119, 0.8);
+}
+
+#info-title {
+    margin-top: 10px;
+    margin-left: 10px;
+    font-family: Amatic SC;
+    color: #777;
+}
+
+#myInfo {
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    font-family: Amatic SC;
+    color: ivory;
+}
+
+.info {
+    margin-top: 5px;
+}

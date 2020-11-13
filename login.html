@@ -56,17 +56,17 @@
             </div>
             <!-- 右边 -->
             <div id="right-part">
-                <form class="myform" method="POST">
+                <form id="myform" class="myform" method="POST">
                     <div class="formdiv">
                         <span>账号</span>
-                        <input type="text" required="required" name="userid">
+                        <input type="text" required="required" name="userid" id="id">
                     </div>
                     <div class="formdiv">
                         <span>密码</span>
-                        <input type="password" required="required" name="password">
+                        <input type="password" required="required" name="password" id="pwd">
                     </div>
                     <div class="formdiv">
-                        <button type="submit" id="submit-button">
+                        <button type="button" id="submit-button">
                             <span>登录</span>
                         </button>
                     </div>
@@ -76,16 +76,26 @@
 
     </div>
     <script src="huaisui_files/js/jquery-3.5.1.js"></script>
-    <script src="./huaisui_files/js/netjs.js"></script>
-    <script src="/huaisui_files/js/homejs.js"></script>
 
     <script>
-        $("submit-button").click(function(){
+        $("#submit-button").click(function(){
+            var userid = $("#id").val();
+            var pwd = $("#pwd").val();
             $.ajax({
                 type : "POST",
                 url : "http://localhost:8080/loginform",
-                success : function(data){
-                    
+                contentType : 'application/json',
+                data : JSON.stringify({
+                    "userid" : userid,
+                    "password" : pwd,
+                }),
+                success : function(data,status,xhr){
+                    var re = xhr.getResponseHeader("redirect");
+                    if(re == "redirect"){
+                        window.location.href = xhr.getResponseHeader("redirectPath");
+                    }else{
+                        alert("error")
+                    }
                 }
             })
         })
