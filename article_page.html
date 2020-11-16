@@ -13,32 +13,35 @@
 
 <body class="custom-background">
     <div id="page" >                                              <!--内部容器-->
-        <div id="layout-inner-side-decoration">
+        <!-- <div id="layout-inner-side-decoration"> -->
             <!-- 左边 -->
             <div id="left-part">
                 <header id="masthead">
-                    <a href="https://localhost:8080/getitem" title="TeoHuaisui">
+                    <a href="http://localhost:8080/" title="TeoHuaisui">
                         <span itemprop="description">HuaisuiBlog</span>
                     </a>
                 </header>
                 <!--navigation容器-->
-                <div id="nav-container"> 
-                    <nav id="site-navigation" role="navigation">
-                        <div class="nav-outside">
-                            <div class="nav-layout">
-                                <div class="nav-item">
-                                    <a href="https://github.com/Huaisui">github</a>
-                                </div>
+                <nav id="site-navigation" role="navigation">
+                    <div class="nav-outside">
+                        <div class="nav-layout">
+                            <div class="nav-item">
+                                <a href="https://github.com/Huaisui">github</a>
                             </div>
                         </div>
-                        <div class="nav-outside">
-                            <div class="nav-layout">
-                                <div class="nav-item">
-                                    <a href="https://www.instagram.com/huaisui_/">instagram</a>
-                                </div>
+                    </div>
+                    <div class="nav-outside">
+                        <div class="nav-layout">
+                            <div class="nav-item">
+                                <a href="https://www.instagram.com/huaisui_/">instagram</a>
                             </div>
                         </div>
-                    </nav>
+                    </div>
+                </nav>
+                <div class="img-container">
+                    <div class="img-layout">
+                        <img src="http://localhost:8080/images/huaisui.jpg" id="myimg">
+                    </div>
                 </div>
                 <div id="myInfo-layout">
                     <div id="info-title">
@@ -65,26 +68,22 @@
             </div>
             <!-- 右边 -->
             <div id="right-part">
-                <div class="article-title" style="margin: 20px; color:#34495e;">
-                    <span id="title-span">Title</span>
-                </div>
-                <div id="md-container">
-                    <div id="test-editormd-view2">
-                        <textarea id="append-test" style="display:none;"></textarea>
+                <div id="article-container">
+                    <div class="article-title">
+                        <span id="title-span">Title</span>
                     </div>
-                </div>
-                <div id="page-nav-container">
-                    <nav id="page-nav">
-                        <a href="" id="last-page" class="page-nav-item" onclick=""><</a>
-                        <a href="" id="next-page" class="page-nav-item" onclick="">></a>
-                    </nav>
+                    <div id="md-container">
+                        <div id="test-editormd-view2">
+                            <textarea id="append-test" style="display:none;"></textarea>
+                        </div>
+                    </div>
                 </div>
                 <div id="site-info">
                     <div>This site written by TeoHuaisui</div>
                     <div>WeChat: TeoHuaisui;  Email: 498685034@qq.com</div>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
     </div>
     
     <script src="huaisui_files/js/jquery.min.js"></script>
@@ -98,6 +97,7 @@
     <script src="node_modules/editor.md/lib/jquery.flowchart.min.js"></script>
 
     <script src="node_modules/editor.md/editormd.js"></script>
+    <script src="./huaisui_files/js/netjs.js"></script>
     <script type="text/javascript">
         var params = window.location.search;
         var id = '';
@@ -105,12 +105,14 @@
             for(var i=4; i<params.length; i++){
                 id += params.charAt(i);
             }
-            console.log(id);
         }
         $.ajax({
-            url : "http://localhost:8080/getarticle?id="+id,
+            url : myURL+"/getarticle?id="+id,
             success : function(data,stutas){
                 console.log(data);
+                if(data.title == null){
+                    window.location.href = myURL+"/errorpage";
+                }
                 document.getElementById("title-span").innerHTML = data.title;
                 document.getElementById("append-test").innerHTML = data.content;
                 mdtohtml();

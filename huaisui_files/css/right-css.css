@@ -1,7 +1,9 @@
 #right-part{
     width: 75%;
-    float: right;
-    /* min-height: inherit; */
+    /* float: right; */
+    background-color: white;
+    display: table-cell;
+    /* min-height: 100%; */
     /* height: 100%; */
 }
 
@@ -18,6 +20,8 @@
 .article-title{
     font-size: 40px;
     text-align: center;
+    padding: 20px;
+    color:#34495e;
 }
 
 .article-title-href{
@@ -72,7 +76,7 @@
 }
 
 #md-container{
-    margin: 10px; 
+    padding: 10px; 
     word-break: break-all;
 }
 
@@ -82,4 +86,10 @@
 
 .formdiv{
     padding: 10px;
+}
+
+.errorInfo {
+    text-align: center;
+    font-family: Amatic SC;
+    font-size: 30px;
 }

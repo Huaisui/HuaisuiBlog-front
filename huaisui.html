@@ -11,97 +11,149 @@
 </head>
 
 <body class="custom-background">
-    <div id="page" >                                              <!--内部容器-->
-        <div id="layout-inner-side-decoration">
-            <!-- 左边 -->
-            <div id="left-part">
-                <header id="masthead">
-                    <a href="http://localhost:8080/" title="TeoHuaisui">
-                        <span itemprop="description">HuaisuiBlog</span>
-                    </a>
-                </header>
-                <!--navigation容器-->
-                <div id="nav-container"> 
-                    <nav id="site-navigation" role="navigation">
-                        <div class="nav-outside">
-                            <div class="nav-layout">
-                                <div class="nav-item">
-                                    <a href="https://github.com/Huaisui">github</a>
-                                </div>
-                            </div>
+    <div id="page">
+        <!-- 左边 -->
+        <div id="left-part">
+            <header id="masthead">
+                <a href="http://localhost:8080/" title="TeoHuaisui">
+                    <span itemprop="description">HuaisuiBlog</span>
+                </a>
+            </header>
+            <!--navigation容器-->
+            <nav id="site-navigation" role="navigation">
+                <div class="nav-outside">
+                    <div class="nav-layout">
+                        <div class="nav-item">
+                            <a href="https://github.com/Huaisui">github</a>
                         </div>
-                        <div class="nav-outside">
-                            <div class="nav-layout">
-                                <div class="nav-item">
-                                    <a href="https://www.instagram.com/huaisui_/">instagram</a>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-                <div class="img-container">
-                    <div class="img-layout">
-                        <img src="http://localhost:8080/images/huaisui.jpg" id="myimg">
                     </div>
                 </div>
-                <div id="myInfo-layout">
-                    <div id="info-title">
-                        <span>My information</span>
-                    </div>
-                    <div id="myInfo">
-                        <div class="info">
-                            <span>WeChat : TeoHuaisui</span>
-                        </div>
-                        <div class="info">
-                            <span>Email : 498685034@qq.com</span>
-                        </div>
-                        <div class="info">
-                            <span>Location : Swatow</span>
-                        </div>
-                        <div class="info">
-                            <span>Hobbies : sports & music & tech</span>
-                        </div>
-                        <div class="info">
-                            <span>Major : Software Engineering</span>
+                <div class="nav-outside">
+                    <div class="nav-layout">
+                        <div class="nav-item">
+                            <a href="https://www.instagram.com/huaisui_/">instagram</a>
                         </div>
                     </div>
+                </div>
+            </nav>
+            <div class="img-container">
+                <div class="img-layout">
+                    <img src="http://localhost:8080/images/huaisui.jpg" id="myimg">
                 </div>
             </div>
-            <!-- 右边 -->
-            <div id="right-part">
-                <div class="articles-container">
-                    <div class="article-container" id="ac_-1">
-                        <div class="article-title">
-                            <a class="article-title-href" href="">
-                                <span>Article-Title</span>
-                            </a>
-                        </div>
-                        <div class="post-date">
-                            <span>post-date</span>
-                        </div>
-                        <div class="button-layout">
-                            <a class="button" href="">
-                                <span>Read</span>
-                            </a>
-                        </div>
+            <div id="myInfo-layout">
+                <div id="info-title">
+                    <span>My information</span>
+                </div>
+                <div id="myInfo">
+                    <div class="info">
+                        <span>WeChat : TeoHuaisui</span>
                     </div>
-                </div>
-                <div id="page-nav-container">
-                    <nav id="page-nav">
-                        <a href="" id="last-page" class="page-nav-item" onclick=""><</a>
-                        <a href="" id="next-page" class="page-nav-item" onclick="">></a>
-                    </nav>
-                </div>
-                <div id="site-info">
-                    <div>This site written by TeoHuaisui</div>
-                    <div>WeChat: TeoHuaisui;  Email: 498685034@qq.com</div>
+                    <div class="info">
+                        <span>Email : 498685034@qq.com</span>
+                    </div>
+                    <div class="info">
+                        <span>Location : Swatow</span>
+                    </div>
+                    <div class="info">
+                        <span>Hobbies : sports & music & tech</span>
+                    </div>
+                    <div class="info">
+                        <span>Major : Software Engineering</span>
+                    </div>
                 </div>
             </div>
         </div>
-
+        <!-- 右边 -->
+        <div id="right-part">
+            <div class="articles-container">
+                <div class="article-container" id="ac_-1">
+                    <div class="article-title">
+                        <a class="article-title-href" href="">
+                            <span>Article-Title</span>
+                        </a>
+                    </div>
+                    <div class="post-date">
+                        <span>post-date</span>
+                    </div>
+                    <div class="button-layout">
+                        <a class="button" href="">
+                            <span>Read</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="page-nav-container">
+                <nav id="page-nav">
+                    <a href="" id="last-page" class="page-nav-item"><</a>
+                    <a href="" id="next-page" class="page-nav-item">></a>
+                </nav>
+            </div>
+            <div id="site-info">
+                <div>This site written by TeoHuaisui</div>
+                <div>WeChat: TeoHuaisui;  Email: 498685034@qq.com</div>
+            </div>
+        </div>
     </div>
     <script src="huaisui_files/js/jquery-3.5.1.js"></script>
     <script src="./huaisui_files/js/netjs.js"></script>
-    <script src="/huaisui_files/js/homejs.js"></script>
+    <script type="text/javascript">
+        // 获得第n页的文章数据
+        function get_page(Url,page){
+            url = Url+"?page="+page;
+            $("#next-page").attr("href",myURL+"?page="+(parseInt(page)+1));
+            if(page>1){
+                $("#last-page").attr("href",myURL+"?page="+(parseInt(page)-1));
+            }
+            ajax(url,"GET").then((value)=>{
+                if(value == "redirect:/"){
+                    window.location.href = myURL;
+                }
+                var obj = JSON.parse(value);
+                var len = obj.length;
+                var myNodes = new Array();
+                for(var i=0; i<len; i++){  //复制n个article-container
+                    myNodes[i] = $("div.article-container").clone();
+                }
+                for(var i=0; i<len; i++){  //append n个article-container到articles-container
+                    myNodes[i].appendTo("div.articles-container");
+                }
+                var containers = document.getElementsByClassName("article-container");
+                for(var i=0; i<len; i++){  //往每个article-container里面填数据
+                    containers[i].id = "ac-"+i;
+                    var x = $("div#ac-"+i).find("span");
+                    x[0].innerHTML = obj[i].article_title;
+                    x[0].setAttribute("id","url"+obj[i].article_id);
+                    x[1].innerHTML = obj[i].post_date;
+                    x[2].setAttribute("id","url"+obj[i].article_id);
+                    var y = $("div#ac-"+i).find("a");
+                    y.attr("href",myURL+"/article?id="+obj[i].article_id);
+                }
+                $("#ac_-1").remove();
+            }).catch((value)=>{
+                console.log(value);
+            });
+        }
+
+        // 请求第n页的接口
+        var page_url = myURL+"/getArticlesInfo";
+        // 请求第n页
+        function to_page(){
+            // var page = window.location.href;
+            var params = window.location.search;
+            var page = '';
+            if(params.substring(0,6)=="?page="){
+                for(var i=6; i<params.length; i++){
+                    if(params.charAt(i)<='9' ** params.charAt(i)>='0'){
+                        page += params.charAt(i);
+                    }
+                }
+            }else{
+                page += '1'
+            }
+            get_page(page_url,page);
+        }
+        to_page();
+    </script>
 </body>
 </html>

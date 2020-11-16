@@ -12,7 +12,7 @@
 
 <body class="custom-background">
     <div id="page" >                                              <!--内部容器-->
-        <div id="layout-inner-side-decoration">
+        <!-- <div id="layout-inner-side-decoration"> -->
             <!-- 左边 -->
             <div id="left-part">
                 <header id="masthead">
@@ -21,37 +21,48 @@
                     </a>
                 </header>
                 <!--navigation容器-->
-                <div id="nav-container"> 
-                    <nav id="site-navigation" role="navigation">
-                        <div class="nav-outside">
-                            <div class="nav-layout">
-                                <div class="nav-item">
-                                    <a href="https://github.com/Huaisui">github</a>
-                                </div>
+                <nav id="site-navigation" role="navigation">
+                    <div class="nav-outside">
+                        <div class="nav-layout">
+                            <div class="nav-item">
+                                <a href="https://github.com/Huaisui">github</a>
                             </div>
                         </div>
-                        <div class="nav-outside">
-                            <div class="nav-layout">
-                                <div class="nav-item">
-                                    <a href="https://www.instagram.com/huaisui_/">instagram</a>
-                                </div>
+                    </div>
+                    <div class="nav-outside">
+                        <div class="nav-layout">
+                            <div class="nav-item">
+                                <a href="https://www.instagram.com/huaisui_/">instagram</a>
                             </div>
                         </div>
-                        <div class="nav-outside">
-                            <div class="nav-layout">
-                                <div class="nav-item">
-                                    <a href="">wechat : TeoHuaisui</a>
-                                </div>
-                            </div>
+                    </div>
+                </nav>
+                <div class="img-container">
+                    <div class="img-layout">
+                        <img src="http://localhost:8080/images/huaisui.jpg" id="myimg">
+                    </div>
+                </div>
+                <div id="myInfo-layout">
+                    <div id="info-title">
+                        <span>My information</span>
+                    </div>
+                    <div id="myInfo">
+                        <div class="info">
+                            <span>WeChat : TeoHuaisui</span>
                         </div>
-                        <div class="nav-outside">
-                            <div class="nav-layout">
-                                <div class="nav-item">
-                                    <a href="">498685034@qq.com</a>
-                                </div>
-                            </div>
+                        <div class="info">
+                            <span>Email : 498685034@qq.com</span>
                         </div>
-                    </nav>
+                        <div class="info">
+                            <span>Location : Swatow</span>
+                        </div>
+                        <div class="info">
+                            <span>Hobbies : sports & music & tech</span>
+                        </div>
+                        <div class="info">
+                            <span>Major : Software Engineering</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- 右边 -->
@@ -71,19 +82,23 @@
                         </button>
                     </div>
                 </form>
+                <div id="site-info">
+                    <div>This site written by TeoHuaisui</div>
+                    <div>WeChat: TeoHuaisui;  Email: 498685034@qq.com</div>
+                </div>
             </div>
-        </div>
+        <!-- </div> -->
 
     </div>
     <script src="huaisui_files/js/jquery-3.5.1.js"></script>
-
-    <script>
+    <script src="./huaisui_files/js/netjs.js"></script>
+    <script type="text/javascript">
         $("#submit-button").click(function(){
             var userid = $("#id").val();
             var pwd = $("#pwd").val();
             $.ajax({
                 type : "POST",
-                url : "http://localhost:8080/loginform",
+                url : myURL+"/loginform",
                 contentType : 'application/json',
                 data : JSON.stringify({
                     "userid" : userid,

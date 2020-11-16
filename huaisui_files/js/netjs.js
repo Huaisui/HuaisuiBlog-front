@@ -1,4 +1,6 @@
-// ajax
+var myURL = "http://localhost:8080";
+
+// ajax 这里完全可以用jquery（事实上我后面用的都是jquery，在这里只是为了体验一下原生js实现ajax
 function ajax(URL,method) {
     return new Promise(function (resolve, reject) {
         var req = new XMLHttpRequest(); 
@@ -17,96 +19,4 @@ function ajax(URL,method) {
     });
 }
 
-// 获得article
-function get_article(url){
-    ajax(url,'GET').then((value)=>{
-        var obj = JSON.parse(value);
-        console.log(obj);
-    }).catch((value)=>{
-        console.log(value);
-    });
-}
 
-// 获得第n页的文章数据
-function get_page(url,page){
-    url = url+"?page="+page;
-    console.log(url);
-    ajax(url,"GET").then((value)=>{
-        var obj = JSON.parse(value);
-        // console.log(obj[0]);
-        // console.log(obj[0].article_id);
-        var len = obj.length;
-        var myNodes = new Array();
-        // console.log(len);
-        for(var i=0; i<len; i++){  //复制n个article-container
-            myNodes[i] = $("div.article-container").clone();
-        }
-        for(var i=0; i<len; i++){  //append n个article-container到articles-container
-            myNodes[i].appendTo("div.articles-container");
-        }
-        var containers = document.getElementsByClassName("article-container");
-        for(var i=0; i<len; i++){  //往每个article-container里面填数据
-            containers[i].id = "ac-"+i;
-            var x = $("div#ac-"+i).find("span");
-            x[0].innerHTML = obj[i].article_title;
-            x[0].setAttribute("id","url"+obj[i].article_id);
-            x[1].innerHTML = obj[i].post_date;
-            x[2].setAttribute("id","url"+obj[i].article_id);
-            // console.log(x);
-            var y = $("div#ac-"+i).find("a");
-            y.attr("href","http://localhost:8080/article?id="+obj[i].article_id);
-            console.log(containers[i]);
-        }
-        $("#ac_-1").remove();
-    }).catch((value)=>{
-        console.log(value);
-    });
-}
-
-// 请求第n页的接口
-var page_url = "http://localhost:8080/getArticlesInfo";
-// 请求第n页
-function to_page(){
-    // var page = window.location.href;
-    var params = window.location.search;
-    var page = '';
-    if(params.substring(0,6)=="?page="){
-        for(var i=6; i<params.length; i++){
-            if(params.charAt(i)<='9' ** params.charAt(i)>='0'){
-                page += params.charAt(i);
-            }
-        }
-    }else{
-        page += '1'
-    }
-    get_page(page_url,page);
-}
-
-function test_function(){
-    console.log("this is test function");
-}
-
-// 上传文章 button
-$("#post-button").click(
-    function (){
-        var title = $("#post-article-title-input").val();
-        var content = testEditor.getMarkdown();
-        console.log(JSON.stringify({
-            content : content,
-            title : title,
-        }));
-        $.ajax({
-            type : 'Post',
-            url : 'http://localhost:8080/postfile',
-            contentType : 'application/json',
-            data : JSON.stringify({
-                "content" : content,
-                "title" : title,
-            }),
-            dataType : 'json',
-            success: function(data, textStatus, jqXHR) {
-                alert(data);
-            },
-        });
-    }
-);

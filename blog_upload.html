@@ -13,27 +13,26 @@
     </head>
     <body class="custom-background">
         <div id="page" >
-            <div id="layout-inner-side-decoration">
-                <div id="title-box">
-                    <div id="description-title">
-                        <span>文章标题</span>
-                    </div>
-                    <div id="title-input-box">
-                        <input id="post-article-title-input" type="text">
-                    </div>
+            <div id="title-box">
+                <div id="description-title">
+                    <span>文章标题</span>
                 </div>
-                <div id="test-editormd">
-                    <textarea style="display:none;" name="content" enctype="multipart/form-data"></textarea>
+                <div id="title-input-box">
+                    <input id="post-article-title-input" type="text">
                 </div>
-                <div class="button-layout">
-                    <button id="post-button">upload</button>
-                </div>
+            </div>
+            <div id="test-editormd">
+                <textarea style="display:none;" name="content" enctype="multipart/form-data"></textarea>
+            </div>
+            <div class="button-layout">
+                <button id="post-button">upload</button>
             </div>
         </div>
 
         <!-- <script src="huaisui_files/jquery-3.5.1.js"></script> -->
         <script src="huaisui_files/js/jquery.min.js"></script>
         <script src="node_modules/editor.md/editormd.js"></script>
+        <script src="./huaisui_files/js/netjs.js"></script>
         <script type="text/javascript">
             var testEditor;
             $(function() {
@@ -44,22 +43,37 @@
                     path              : 'node_modules/editor.md/lib/',
                     imageUpload       : true,
                     imageFormats      : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-                    imageUploadURL    : "http://localhost:8080/postpic",
+                    imageUploadURL    : myURL+"/postpic",
                     crossDomainUpload : true,
                     saveHTMLToTextarea : true,
-                    uploadCallbackURL : "http://localhost:8080/images"
-                    
-                    /*
-                    跨域时，上传的图片服务器后台只需要返回一个跳转 URL 并跳转到原页面同域下的 callback 页面，结构如下：
-                    {
-                        success   : 0 | 1,   // 0 表示上传失败，1 表示上传成功
-                        message   : "提示的信息，上传成功或上传失败及错误信息等。",
-                        dialog_id : $_GET['dialog_id'],
-                        url       : "远程图片地址"    // 上传成功时才返回
-                    }
-                    */
+                    uploadCallbackURL : myURL+"/images"
                 });
             });
+
+            // 上传文章 button
+            $("#post-button").click(
+                function (){
+                    var title = $("#post-article-title-input").val();
+                    var content = testEditor.getMarkdown();
+                    console.log(JSON.stringify({
+                        content : content,
+                        title : title,
+                    }));
+                    $.ajax({
+                        type : 'Post',
+                        url : myURL+'/postfile',
+                        contentType : 'application/json',
+                        data : JSON.stringify({
+                            "content" : content,
+                            "title" : title,
+                        }),
+                        dataType : 'json',
+                        success: function(data, textStatus, jqXHR) {
+                            alert(data);
+                        },
+                    });
+                }
+            );
         </script>
         <script src="huaisui_files/js/netjs.js"></script>
     </body>
