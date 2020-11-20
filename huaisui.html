@@ -15,7 +15,7 @@
         <!-- 左边 -->
         <div id="left-part">
             <header id="masthead">
-                <a href="http://localhost:8080/" title="TeoHuaisui">
+                <a href="http://localhost:8080" title="TeoHuaisui">
                     <span itemprop="description">HuaisuiBlog</span>
                 </a>
             </header>
@@ -107,29 +107,33 @@
             }
             ajax(url,"GET").then((value)=>{
                 if(value == "redirect:/"){
-                    window.location.href = myURL;
+                    console.log("redirect:/errorpage");
+                    window.location.href = myURL+"/errorpage";
+                }else{
+                    console.log("get_page success");
+                    console.log(value);
+                    var obj = JSON.parse(value);
+                    var len = obj.length;
+                    var myNodes = new Array();
+                    for(var i=0; i<len; i++){  //复制n个article-container
+                        myNodes[i] = $("div.article-container").clone();
+                    }
+                    for(var i=0; i<len; i++){  //append n个article-container到articles-container
+                        myNodes[i].appendTo("div.articles-container");
+                    }
+                    var containers = document.getElementsByClassName("article-container");
+                    for(var i=0; i<len; i++){  //往每个article-container里面填数据
+                        containers[i].id = "ac-"+i;
+                        var x = $("div#ac-"+i).find("span");
+                        x[0].innerHTML = obj[i].article_title;
+                        x[0].setAttribute("id","url"+obj[i].article_id);
+                        x[1].innerHTML = obj[i].post_date;
+                        x[2].setAttribute("id","url"+obj[i].article_id);
+                        var y = $("div#ac-"+i).find("a");
+                        y.attr("href",myURL+"/article?id="+obj[i].article_id);
+                    }
+                    $("#ac_-1").remove();
                 }
-                var obj = JSON.parse(value);
-                var len = obj.length;
-                var myNodes = new Array();
-                for(var i=0; i<len; i++){  //复制n个article-container
-                    myNodes[i] = $("div.article-container").clone();
-                }
-                for(var i=0; i<len; i++){  //append n个article-container到articles-container
-                    myNodes[i].appendTo("div.articles-container");
-                }
-                var containers = document.getElementsByClassName("article-container");
-                for(var i=0; i<len; i++){  //往每个article-container里面填数据
-                    containers[i].id = "ac-"+i;
-                    var x = $("div#ac-"+i).find("span");
-                    x[0].innerHTML = obj[i].article_title;
-                    x[0].setAttribute("id","url"+obj[i].article_id);
-                    x[1].innerHTML = obj[i].post_date;
-                    x[2].setAttribute("id","url"+obj[i].article_id);
-                    var y = $("div#ac-"+i).find("a");
-                    y.attr("href",myURL+"/article?id="+obj[i].article_id);
-                }
-                $("#ac_-1").remove();
             }).catch((value)=>{
                 console.log(value);
             });

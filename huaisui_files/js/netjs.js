@@ -1,4 +1,8 @@
+//调试
 var myURL = "http://localhost:8080";
+
+//部署
+// var myURL = "http://teohuaisui.top";
 
 // ajax 这里完全可以用jquery（事实上我后面用的都是jquery，在这里只是为了体验一下原生js实现ajax
 function ajax(URL,method) {
